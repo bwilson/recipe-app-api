@@ -3,7 +3,7 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: python:3.7.3
+image: python:3.7-alpine
 
 pipelines:
   default:
@@ -12,5 +12,6 @@ pipelines:
           - pip
         script: # Modify the commands below to build your repository.
           - pip install -r requirements.txt
+          - pip install docker
           - pip install docker-compose
           - docker-compose run app sh -c "python manage.py test && flake8"
